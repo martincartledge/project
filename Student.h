@@ -25,36 +25,36 @@ public:
     char getStudentId() {
         return studentID;
     };
-    void setStudentId(char new_studentID) {
-        studentID = new_studentID;
+    void setStudentId(char newStudentID) {
+        studentID = newStudentID;
     };
 
     char getFirstName() {
         return firstName;
     };
-    void setFirstName(char new_firstName) {
-        firstName = new_firstName;
+    void setFirstName(char newFirstName) {
+        firstName = newFirstName;
     };
 
     char getLastName() {
         return lastName;
     };
-    void setLastName(char new_lastName) {
-        lastName = new_lastName;
+    void setLastName(char newLastName) {
+        lastName = newLastName;
     };
 
     char getEmailAddress() {
         return emailAddress;
     };
-    void setEmailAddress(char new_emailAddress) {
-        emailAddress = new_emailAddress;
+    void setEmailAddress(char newEmailAddress) {
+        emailAddress = newEmailAddress;
     };
 
     int getAge() {
         return age;
     };
-    void setAge(int new_age) {
-        age = new_age;
+    void setAge(int newAge) {
+        age = newAge;
     };
 
     enum DegreeProgram getDegreeProgram() {

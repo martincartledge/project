@@ -1,16 +1,18 @@
-//
+#include <iostream>
+#include <vector>
+
 // Created by Martin Cartledge on 10/9/22.
-//
 
 #ifndef PROJECT_ROSTER_H
 #define PROJECT_ROSTER_H
 
 #include "degree.h"
+#include "Student.h"
 
 class Roster {
 public:
     // 1.  Create an array of pointers, classRosterArray, to hold the data provided in the “studentData Table.”
-    char *classRosterArray[16] = {};
+    std::vector<const Student*> classRosterArray;
     // 2.  Create a student object for each student in the data table and populate classRosterArray.
     // a.  Parse each set of data identified in the “studentData Table.”
     // b.  Add each student object to classRosterArray.

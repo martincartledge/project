@@ -5,73 +5,116 @@
 #ifndef PROJECT_STUDENT_H
 #define PROJECT_STUDENT_H
 
-
 #include "degree.h"
 
-class Student {
+using std::cout;
+using std::endl;
+using std::left;
+using std::string;
+// using std::setw;
+
+class Student
+{
 
 private:
-    char studentID;
-    char firstName;
-    char lastName;
-    char emailAddress;
+    int studentID;
+    string firstName;
+    string lastName;
+    string emailAddress;
     int age;
     enum DegreeProgram degreeProgram;
-    int* numberOfDays;
+    int *numberOfDays;
 
 public:
-    Student(char studentID, char firstName, char lastName, char emailAddress, int age, enum DegreeProgram degreeProgram, int* numberOfDays);
+    Student();
 
-    char getStudentId() {
-        return studentID;
-    };
-    void setStudentId(char newStudentID) {
-        studentID = newStudentID;
-    };
+    Student(int studentID, string firstName, string lastName, string emailAddress, int age, enum DegreeProgram degreeProgram, int *numberOfDays);
 
-    char getFirstName() {
-        return firstName;
-    };
-    void setFirstName(char newFirstName) {
-        firstName = newFirstName;
-    };
+    ~Student();
 
-    char getLastName() {
-        return lastName;
-    };
-    void setLastName(char newLastName) {
-        lastName = newLastName;
-    };
+    // Getters
+    int getStudentID();
+    string getFirstName();
+    string getLastName();
+    string getEmailAddres();
+    int getAge();
+    DegreeProgram getDegreeProgram();
+    int *getNumberOfDays();
 
-    char getEmailAddress() {
-        return emailAddress;
-    };
-    void setEmailAddress(char newEmailAddress) {
-        emailAddress = newEmailAddress;
-    };
+    // Setters
+    void setStudentID(int newStudentID);
+    void setFirstName(string newFirstName);
+    void setLastName(string newLastName);
+    void setEmailAddress(string newEmailAddress);
+    void setAge(int newAge);
+    void setDegreeProgram(DegreeProgram newDegreeProgram);
+    void setNumberOfDays(int *newNumberOfDays);
 
-    int getAge() {
-        return age;
-    };
-    void setAge(int newAge) {
-        age = newAge;
-    };
+    // TODO:  move these out of header file and into cpp file
 
-    enum DegreeProgram getDegreeProgram() {
-        return degreeProgram;
-    };
-    void setDegreeProgram(enum DegreeProgram newDegreeProgram) {
-        degreeProgram = newDegreeProgram;
-    };
+    // int getStudentId()
+    // {
+    //     return studentID;
+    // };
+    // void setStudentId(int newStudentID)
+    // {
+    //     studentID = newStudentID;
+    // };
 
-    int getNumberOfDays() {
-        return *numberOfDays;
-    };
+    // string getFirstName()
+    // {
+    //     return firstName;
+    // };
+    // void setFirstName(string newFirstName)
+    // {
+    //     firstName = newFirstName;
+    // };
 
-    void setNumberOfDays(int* newNumberOfDays) {
-        numberOfDays = newNumberOfDays;
-    };
+    // string getLastName()
+    // {
+    //     return lastName;
+    // };
+    // void setLastName(string newLastName)
+    // {
+    //     lastName = newLastName;
+    // };
+
+    // string getEmailAddress()
+    // {
+    //     return emailAddress;
+    // };
+    // void setEmailAddress(string newEmailAddress)
+    // {
+    //     emailAddress = newEmailAddress;
+    // };
+
+    // int getAge()
+    // {
+    //     return age;
+    // };
+    // void setAge(int newAge)
+    // {
+    //     age = newAge;
+    // };
+
+    // enum DegreeProgram getDegreeProgram()
+    // {
+    //     return degreeProgram;
+    // };
+    // void setDegreeProgram(enum DegreeProgram newDegreeProgram)
+    // {
+    //     degreeProgram = newDegreeProgram;
+    // };
+
+    // int getNumberOfDays()
+    // {
+    //     return *numberOfDays;
+    // };
+
+    // void setNumberOfDays(int *newNumberOfDays)
+    // {
+    //     numberOfDays = newNumberOfDays;
+    // };
 };
 
-
-#endif //PROJECT_STUDENT_H
+#endif // PROJECT_STUDENT_H

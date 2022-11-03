@@ -1,7 +1,7 @@
 #include "Roster.h"
 #include <iostream>
 #include <string>
-
+// Parse input data
 void Roster::parse(string studentData)
 {
     // Assign degree program
@@ -20,10 +20,10 @@ void Roster::parse(string studentData)
         left = right + 1;
     }
 
-    add(stoi(parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
+    add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
 }
-
-void Roster::add(int studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
+// Add student to the roster
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
     int rosterArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
 
@@ -31,20 +31,19 @@ void Roster::add(int studentID, string firstName, string lastName, string emailA
     // lastIndex references the last student to be added to the roster
     cout << "Student added to class roster at: " << lastIndex + 1 << endl;
 }
-
+// Print all students in roster
 void Roster::printAll()
 {
     for (int i = 0; i <= Roster::lastIndex; i++)
         Roster::classRosterArray[i]->print();
-}
-
+} // Print by degree program
 void Roster::printByDegreeProgram(DegreeProgram dp)
 {
     for (int i = 0; i <= Roster::lastIndex; i++)
         if (Roster::classRosterArray[i]->getDegreeProgram() == dp)
             classRosterArray[i]->print();
 }
-
+// Print invalid emails
 void Roster::printInvalidEmails()
 {
     for (int i = 0; i <= Roster::lastIndex; i++)
@@ -54,8 +53,8 @@ void Roster::printInvalidEmails()
             cout << email << " is invalid!" << endl;
     }
 }
-
-void Roster::printAverageDaysInCourse(int studentID)
+// Print average days in course
+void Roster::printAverageDaysInCourse(string studentID)
 {
     for (int i = 0; i <= Roster::lastIndex; i++)
     {
@@ -66,23 +65,43 @@ void Roster::printAverageDaysInCourse(int studentID)
         }
     }
 }
-
-void Roster::remove(int studentID)
+// Remove student
+void Roster::remove(string studentID)
 {
+    // Assume did not find student
     bool success = false;
     for (int i = 0; i <= Roster::lastIndex; i++)
     {
+        // Find student to remove
         if (classRosterArray[i]->getStudentID() == studentID)
         {
+            // Found a matching ID, removal is possible
             success = true;
             // Swap student with the last one
             Student *temp = classRosterArray[i];
-
+            //
             classRosterArray[i] = classRosterArray[numStudents - 1];
-
             classRosterArray[numStudents - 1] = temp;
-
+            // Decrement lastIndex so that the removed student does not show again
             Roster::lastIndex--;
         }
+    }
+    if (success)
+    {
+        cout << "Student " << studentID << " removed" << endl;
+        printAll();
+    }
+    else
+        cout << "Student " << studentID << " not found" << endl;
+}
+// Deconstructor
+Roster::~Roster()
+{
+    for (int i = 0; i < numStudents; i++)
+    {
+        cout << "Destructor called for " << classRosterArray[i]->getStudentID() << endl;
+        delete classRosterArray[i];
+        // Set to null after deletion
+        classRosterArray[i] = nullptr;
     }
 }

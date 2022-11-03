@@ -15,7 +15,7 @@ class Student
 {
 
 private:
-    int studentID;
+    string studentID;
     string firstName;
     string lastName;
     string emailAddress;
@@ -27,11 +27,11 @@ public:
     // Parameterless - sets to default values
     Student();
     // Full constructor
-    Student(int studentID, string firstName, string lastName, string emailAddress, int age, enum DegreeProgram degreeProgram, int *numberOfDays);
+    Student(string studentID, string firstName, string lastName, string emailAddress, int age, enum DegreeProgram degreeProgram, int *numberOfDays);
     // Deconstructor
     ~Student();
     // Getters
-    int getStudentID();
+    string getStudentID();
     string getFirstName();
     string getLastName();
     string getEmailAddress();
@@ -39,7 +39,7 @@ public:
     DegreeProgram getDegreeProgram();
     int *getNumberOfDays();
     // Setters
-    void setStudentID(int newStudentID);
+    void setStudentID(string newStudentID);
     void setFirstName(string newFirstName);
     void setLastName(string newLastName);
     void setEmailAddress(string newEmailAddress);

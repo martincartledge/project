@@ -2,37 +2,44 @@
 #include <sstream>
 #include "Roster.h"
 
-int main() {
+int main()
+{
     std::cout << "Hello, World!" << std::endl;
-
     std::cout << "Course title: Scripting and Programming" << std::endl;
-
     std::cout << "Programming language: C++" << std::endl;
-
     std::cout << "WGU ID: " << std::endl;
-
     std::cout << "Name: Martin Cartledge" << std::endl;
 
     Roster classRoster = Roster();
 
     const std::string studentData[] = {"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,[firstname],[lastname],[emailaddress],[age], [numberofdaystocomplete3courses],SOFTWARE"};
 
-    int studentDataLength = (sizeof(studentData) / sizeof(studentData[0]));
+    // Arrays should be declared as a constant
+    const int numStudents = 5;
+    // Creates a Roster class and parses the data in the constructor
+    Roster roster;
 
-    for (int i = 0; i < studentDataLength; i++) {
-        std::stringstream currentString(studentData[i]);
+    cout << "Displaying all students: " << endl;
+    roster.printAll();
+    // Print students by their degreeType
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Students by Degree Type: " << degreeProgramTypes[i] << endl;
+        // Casting i (integer) to DegreeProgram
+        // If it was not cast, DegreeProgram returns /displays an int value, NOT the string value
+        roster.printByDegreeProgram((DegreeProgram)i);
+    }
 
-        while(currentString.good()) {
-            std::string item;
-            getline(currentString, item, ',');
-            classRoster.classRosterArray.push_back(item);
-            // classRoster.add();
-        }
+    cout << "Students with invalid email addresses: " << endl;
+    roster.printInvalidEmails();
 
-    };
+    cout << "Average days in a course: " << endl;
+    for (int i = 0; i < numStudents; i++)
+        roster.printAverageDaysInCourse(roster.getStudents()[i]->getStudentID());
 
-    std::cout << "classRosterArray: " << classRoster.classRosterArray << std::endl;
-
+    roster.remove("A3");
+    roster.printAll();
+    roster.remove("A3");
     /*
      *
      *  X 1. Print out to the screen, via your application, the course title, the programming language used, your WGU student ID, and your name.

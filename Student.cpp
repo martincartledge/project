@@ -2,7 +2,7 @@
 
 Student::Student() // Parameterless constructor sets all fields to default values
 {
-    this->studentID = 0;
+    this->studentID = "";
     this->firstName = "";
     this->lastName = "";
     this->emailAddress = "";
@@ -11,7 +11,7 @@ Student::Student() // Parameterless constructor sets all fields to default value
     this->numberOfDays = 0;
 }
 
-Student::Student(int studentID, string firstName, string lastName, string emailAddress, int age, DegreeProgram degreeProgram, int *numberOfDays) // Full constructor
+Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, DegreeProgram degreeProgram, int *numberOfDays) // Full constructor
 {
     this->studentID = studentID;
     this->firstName = firstName;
@@ -25,7 +25,7 @@ Student::Student(int studentID, string firstName, string lastName, string emailA
 Student::~Student() {} // Deconstructor
 
 // Setters
-int Student::getStudentID() { return this->studentID; }
+string Student::getStudentID() { return this->studentID; }
 string Student::getFirstName() { return this->firstName; }
 string Student::getLastName() { return this->lastName; }
 string Student::getEmailAddress() { return this->emailAddress; }
@@ -34,7 +34,7 @@ DegreeProgram Student::getDegreeProgram() { return this->degreeProgram; }
 int *Student::getNumberOfDays() { return this->numberOfDays; }
 
 // Getters
-void Student::setStudentID(int ID) { this->studentID = ID; }
+void Student::setStudentID(string ID) { this->studentID = ID; }
 void Student::setFirstName(string firstName) { this->firstName = firstName; }
 void Student::setLastName(string lastName) { this->lastName = lastName; }
 void Student::setEmailAddress(string emailAddress) { this->emailAddress = emailAddress; }

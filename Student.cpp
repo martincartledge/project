@@ -1,4 +1,4 @@
-#include "Student.h"
+#include "student.h"
 
 Student::Student() // Parameterless constructor sets all fields to default values
 {

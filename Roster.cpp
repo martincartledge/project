@@ -1,4 +1,4 @@
-#include "Roster.h"
+#include "roster.h"
 #include <iostream>
 #include <string>
 // Parse input data
@@ -6,13 +6,13 @@ void Roster::parse(string studentData)
 {
     // Assign degree program
     DegreeProgram dp = DegreeProgram::NETWORK;
-    // Create an array, contains 8 items
-    string parsed[8];
+    // Create an array, contains 9 items
+    string parsed[9];
 
     int right = 0;
     int left = 0;
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 9; i++)
     {
         // Find returns int with position of comma
         right = studentData.find(",", left);
@@ -20,12 +20,12 @@ void Roster::parse(string studentData)
         left = right + 1;
     }
 
-    add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
+    add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), stoi(parsed[8]), dp);
 }
 // Add student to the roster
-void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, int daysInCourse4, DegreeProgram degreeProgram)
 {
-    int rosterArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
+    int rosterArray[4] = {daysInCourse1, daysInCourse2, daysInCourse3, daysInCourse4};
 
     classRosterArray[++lastIndex] = new Student(studentID, firstName, lastName, emailAddress, age, degreeProgram, rosterArray);
     // lastIndex references the last student to be added to the roster
@@ -61,7 +61,7 @@ void Roster::printAverageDaysInCourse(string studentID)
         if (classRosterArray[i]->getStudentID() == studentID)
         {
             cout << studentID << ':';
-            cout << (classRosterArray[i]->getNumberOfDays()[0] + classRosterArray[i]->getNumberOfDays()[1] + classRosterArray[i]->getNumberOfDays()[2]) / 3.0 << endl;
+            cout << (classRosterArray[i]->getNumberOfDays()[0] + classRosterArray[i]->getNumberOfDays()[1] + classRosterArray[i]->getNumberOfDays()[2] + classRosterArray[i]->getNumberOfDays()[3]) / 3.0 << endl;
         }
     }
 }

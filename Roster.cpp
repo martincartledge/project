@@ -1,7 +1,21 @@
 #include "roster.h"
 #include <iostream>
 #include <string>
-// Parse input data
+
+Roster::Roster()
+{
+    this->numOfStudents = 0;
+    this->lastStudentPosition = -1;
+    this->classRosterArray = nullptr;
+}
+
+Roster::Roster(int numOfStudents)
+{
+    this->numOfStudents = numOfStudents;
+    this->lastStudentPosition = -1;
+    this->classRosterArray = new Student*[numOfStudents];
+}
+
 void Roster::parse(string studentData)
 {
     // Assign degree program
@@ -22,33 +36,24 @@ void Roster::parse(string studentData)
 
     add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), stoi(parsed[8]), dp);
 }
-// Add student to the roster
-void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, int daysInCourse4, DegreeProgram degreeProgram)
-{
-    int rosterArray[4] = {daysInCourse1, daysInCourse2, daysInCourse3, daysInCourse4};
-
-    classRosterArray[++lastIndex] = new Student(studentID, firstName, lastName, emailAddress, age, degreeProgram, rosterArray);
-    // lastIndex references the last student to be added to the roster
-    cout << "Student added to class roster at: " << lastIndex + 1 << endl;
-}
 // Print all students in roster
 void Roster::printAll()
 {
-    for (int i = 0; i <= Roster::lastIndex; i++)
+    for (int i = 0; i <= Roster::lastStudentPosition; i++)
         Roster::classRosterArray[i]->print();
 } // Print by degree program
 void Roster::printByDegreeProgram(DegreeProgram dp)
 {
-    for (int i = 0; i <= Roster::lastIndex; i++)
+    for (int i = 0; i <= Roster::lastStudentPosition; i++)
         if (Roster::classRosterArray[i]->getDegreeProgram() == dp)
             classRosterArray[i]->print();
 }
 // Print invalid emails
 void Roster::printInvalidEmails()
 {
-    for (int i = 0; i <= Roster::lastIndex; i++)
+    for (int i = 0; i <= Roster::lastStudentPosition; i++)
     {
-        string email = Roster::getStudents()[i]->getEmailAddress();
+        string email = Roster::classRosterArray[i]->getEmailAddress();
         if (email.find(' ') != string::npos && email.find('.') == string::npos && email.find('@') == string::npos)
             cout << email << " is invalid!" << endl;
     }
@@ -56,7 +61,7 @@ void Roster::printInvalidEmails()
 // Print average days in course
 void Roster::printAverageDaysInCourse(string studentID)
 {
-    for (int i = 0; i <= Roster::lastIndex; i++)
+    for (int i = 0; i <= Roster::lastStudentPosition; i++)
     {
         if (classRosterArray[i]->getStudentID() == studentID)
         {
@@ -70,7 +75,7 @@ void Roster::remove(string studentID)
 {
     // Assume did not find student
     bool success = false;
-    for (int i = 0; i <= Roster::lastIndex; i++)
+    for (int i = 0; i <= Roster::lastStudentPosition; i++)
     {
         // Find student to remove
         if (classRosterArray[i]->getStudentID() == studentID)
@@ -80,10 +85,10 @@ void Roster::remove(string studentID)
             // Swap student with the last one
             Student *temp = classRosterArray[i];
             //
-            classRosterArray[i] = classRosterArray[numStudents - 1];
-            classRosterArray[numStudents - 1] = temp;
-            // Decrement lastIndex so that the removed student does not show again
-            Roster::lastIndex--;
+            classRosterArray[i] = classRosterArray[numOfStudents - 1];
+            classRosterArray[numOfStudents - 1] = temp;
+            // Decrement lastStudentPosition so that the removed student does not show again
+            Roster::lastStudentPosition--;
         }
     }
     if (success)
@@ -97,7 +102,7 @@ void Roster::remove(string studentID)
 // Deconstructor
 Roster::~Roster()
 {
-    for (int i = 0; i < numStudents; i++)
+    for (int i = 0; i < numOfStudents; i++)
     {
         cout << "Destructor called for " << classRosterArray[i]->getStudentID() << endl;
         delete classRosterArray[i];

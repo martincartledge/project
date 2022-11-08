@@ -7,18 +7,15 @@
 
 class Roster
 {
-private:
-    // Means no Students in the Roster
-    int lastIndex = -1;
-    // Size of the array, must be a constant
-    const static int numStudents = 5;
-    // 1.  Create an array of pointers, classRosterArray, to hold the data provided in the “studentData Table.”
-    Student *classRosterArray[numStudents] = {nullptr, nullptr, nullptr, nullptr, nullptr};
-
 public:
+    int lastStudentPosition;
+    int numOfStudents;
+    // 1.  Create an array of pointers, classRosterArray, to hold the data provided in the “studentData Table.”
+    Student **classRosterArray;
+
     Roster(); // Parameterless constructor
 
-    Student **getStudents(); // Getter for the pointer to the Student objects
+    Roster(int numOfStudents); // Constructor which passes numOfStudents
 
     // 2.  Create a student object for each student in the data table and populate classRosterArray.
     // a.  Parse each set of data identified in the “studentData Table.”

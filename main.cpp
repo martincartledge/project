@@ -12,13 +12,16 @@ int main()
     const std::string studentData[] = {"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Martin,Cartledge,martin@hey.com,32,10,15,20,25,SOFTWARE"};
 
     // Arrays should be declared as a constant
-    const int numStudents = 5;
+    const int numOfStudents = 5;
 
     // 2. Create an instance of the Roster class called classRoster.
-    // Creates a Roster class and parses the data in the constructor
-    // 3. Add each student to classRoster.
-    Roster classRoster;
+    Roster* classRoster = new Roster(numOfStudents);
 
+    // 3. Add each student to classRoster.
+    for (int i = 0; i < numOfStudents; i++)
+    {
+        classRoster->add(studentData[i]);
+    }
     //  4. Convert the following pseudo code to complete the rest of the  main() function:
     //      X classRoster.printAll();
     //      X classRoster.printInvalidEmails();
@@ -35,8 +38,8 @@ int main()
     classRoster.printInvalidEmails();
 
     cout << "Average days in a course: " << endl;
-    for (int i = 0; i < numStudents; i++)
-        classRoster.printAverageDaysInCourse(classRoster.getStudents()[i]->getStudentID());
+    for (int i = 0; i < classRoster.numOfStudents; i++)
+        classRoster.printAverageDaysInCourse(classRoster.classRosterArray[i]->getStudentID());
 
     classRoster.printByDegreeProgram(DegreeProgram::SOFTWARE);
 

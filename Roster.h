@@ -24,7 +24,7 @@ public:
 
     // Sets the instance variables from part D1 and updates the roster
     void
-    add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, int daysInCourse4, DegreeProgram degreeProgram){};
+    add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram);
 
     // Removes students from the roster by student ID. If the student ID does not exist, the function prints an error message indicating that the student was not found.
     void remove(string studentID);

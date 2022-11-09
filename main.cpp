@@ -20,7 +20,7 @@ int main()
     // 3. Add each student to classRoster.
     for (int i = 0; i < numOfStudents; i++)
     {
-        classRoster->add(studentData[i]);
+        classRoster->parse(studentData[i]);
     }
     //  4. Convert the following pseudo code to complete the rest of the  main() function:
     //      X classRoster.printAll();
@@ -34,25 +34,25 @@ int main()
     //      X classRoster.printAll();
     //      X classRoster.remove("A3");
     //      X Print students by their degreeType
-    classRoster.printAll();
-    classRoster.printInvalidEmails();
+    classRoster->printAll();
+    classRoster->printInvalidEmails();
 
     cout << "Average days in a course: " << endl;
-    for (int i = 0; i < classRoster.numOfStudents; i++)
-        classRoster.printAverageDaysInCourse(classRoster.classRosterArray[i]->getStudentID());
+    for (int i = 0; i < classRoster->numOfStudents; i++)
+        classRoster->printAverageDaysInCourse(classRoster->classRosterArray[i]->getStudentID());
 
-    classRoster.printByDegreeProgram(DegreeProgram::SOFTWARE);
+    classRoster->printByDegreeProgram(DegreeProgram::SOFTWARE);
 
-    classRoster.remove("A3");
-    classRoster.printAll();
-    classRoster.remove("A3");
+    classRoster->remove("A3");
+    classRoster->printAll();
+    classRoster->remove("A3");
 
     for (int i = 0; i < 3; i++)
     {
         cout << "Students by Degree Type: " << degreeProgramTypes[i] << endl;
         // Casting i (integer) to DegreeProgram
         // If it was not cast, DegreeProgram returns /displays an int value, NOT the string value
-        classRoster.printByDegreeProgram((DegreeProgram)i);
+        classRoster->printByDegreeProgram((DegreeProgram)i);
     }
 
     /*

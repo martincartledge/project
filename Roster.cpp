@@ -16,12 +16,22 @@ Roster::Roster(int numOfStudents)
     this->classRosterArray = new Student*[numOfStudents];
 }
 
+// Add student to the roster
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
+{
+    int rosterArray[4] = {daysInCourse1, daysInCourse2, daysInCourse3};
+
+    classRosterArray[++lastStudentPosition] = new Student(studentID, firstName, lastName, emailAddress, age, degreeProgram, rosterArray);
+    // lastIndex references the last student to be added to the roster
+    cout << "Student added to class roster at: " << lastStudentPosition + 1 << endl;
+}
+
 void Roster::parse(string studentData)
 {
     // Assign degree program
     DegreeProgram dp = DegreeProgram::NETWORK;
-    // Create an array, contains 9 items
-    string parsed[9];
+    // Create an array, contains 8 items
+    string parsed[8];
 
     int right = 0;
     int left = 0;
@@ -33,9 +43,10 @@ void Roster::parse(string studentData)
         parsed[i] = studentData.substr(left, right - left);
         left = right + 1;
     }
-
-    add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), stoi(parsed[8]), dp);
+    cout << parsed[8] << endl;
+    add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
 }
+
 // Print all students in roster
 void Roster::printAll()
 {

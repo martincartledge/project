@@ -36,7 +36,7 @@ void Roster::parse(string studentData)
     int right = 0;
     int left = 0;
 
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < 8; i++)
     {
         // Find returns int with position of comma
         right = studentData.find(",", left);

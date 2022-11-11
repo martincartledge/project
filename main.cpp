@@ -15,7 +15,7 @@ int main()
     const int numOfStudents = 5;
 
     // 2. Create an instance of the Roster class called classRoster.
-    Roster* classRoster = new Roster(numOfStudents);
+    Roster *classRoster = new Roster(numOfStudents);
 
     // 3. Add each student to classRoster.
     for (int i = 0; i < numOfStudents; i++)
@@ -49,7 +49,6 @@ int main()
 
     for (int i = 0; i < 3; i++)
     {
-        cout << "Students by Degree Type: " << degreeProgramTypes[i] << endl;
         // Casting i (integer) to DegreeProgram
         // If it was not cast, DegreeProgram returns /displays an int value, NOT the string value
         classRoster->printByDegreeProgram((DegreeProgram)i);

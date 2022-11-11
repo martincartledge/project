@@ -13,15 +13,14 @@ Roster::Roster(int numOfStudents)
 {
     this->numOfStudents = numOfStudents;
     this->lastStudentPosition = -1;
-    this->classRosterArray = new Student*[numOfStudents];
+    this->classRosterArray = new Student *[numOfStudents];
 }
 
 // Add student to the roster
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram)
 {
-    int rosterArray[4] = {daysInCourse1, daysInCourse2, daysInCourse3};
-
-    classRosterArray[++lastStudentPosition] = new Student(studentID, firstName, lastName, emailAddress, age, degreeProgram, rosterArray);
+    int rosterArray[3] = {daysInCourse1, daysInCourse2, daysInCourse3};
+    classRosterArray[++lastStudentPosition] = new Student(studentID, firstName, lastName, emailAddress, age, degreeProgram, rosterArray, 3);
     // lastIndex references the last student to be added to the roster
     cout << "Student added to class roster at: " << lastStudentPosition + 1 << endl;
 }
@@ -43,7 +42,7 @@ void Roster::parse(string studentData)
         parsed[i] = studentData.substr(left, right - left);
         left = right + 1;
     }
-    cout << parsed[8] << endl;
+
     add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
 }
 
@@ -52,13 +51,16 @@ void Roster::printAll()
 {
     for (int i = 0; i <= Roster::lastStudentPosition; i++)
         Roster::classRosterArray[i]->print();
-} // Print by degree program
+}
+
+// Print by degree program
 void Roster::printByDegreeProgram(DegreeProgram dp)
 {
     for (int i = 0; i <= Roster::lastStudentPosition; i++)
         if (Roster::classRosterArray[i]->getDegreeProgram() == dp)
             classRosterArray[i]->print();
 }
+
 // Print invalid emails
 void Roster::printInvalidEmails()
 {
@@ -69,6 +71,7 @@ void Roster::printInvalidEmails()
             cout << email << " is invalid!" << endl;
     }
 }
+
 // Print average days in course
 void Roster::printAverageDaysInCourse(string studentID)
 {
@@ -77,7 +80,7 @@ void Roster::printAverageDaysInCourse(string studentID)
         if (classRosterArray[i]->getStudentID() == studentID)
         {
             cout << studentID << ':';
-            cout << (classRosterArray[i]->getNumberOfDays()[0] + classRosterArray[i]->getNumberOfDays()[1] + classRosterArray[i]->getNumberOfDays()[2] + classRosterArray[i]->getNumberOfDays()[3]) / 3.0 << endl;
+            cout << (classRosterArray[i]->getNumberOfDays()[0] + classRosterArray[i]->getNumberOfDays()[1] + classRosterArray[i]->getNumberOfDays()[2]) / 3 << endl;
         }
     }
 }

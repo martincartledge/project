@@ -24,10 +24,11 @@ private:
     int *numberOfDays;
 
 public:
+    int numberOfDaysCapacity = 3;
     // Parameterless - sets to default values
     Student();
     // Full constructor
-    Student(string studentID, string firstName, string lastName, string emailAddress, int age, enum DegreeProgram degreeProgram, int *numberOfDays);
+    Student(string studentID, string firstName, string lastName, string emailAddress, int age, enum DegreeProgram degreeProgram, int numOfDays[], int numberOfDaysCapacity);
     // Deconstructor
     ~Student();
     // Getters

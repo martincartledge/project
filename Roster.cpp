@@ -67,7 +67,7 @@ void Roster::printInvalidEmails()
     for (int i = 0; i <= Roster::lastStudentPosition; i++)
     {
         string email = Roster::classRosterArray[i]->getEmailAddress();
-        if (email.find(' ') != string::npos && email.find('.') == string::npos && email.find('@') == string::npos)
+        if (email.find(' ') != string::npos || email.find('.') == string::npos || email.find('@') == string::npos)
             cout << email << " is invalid!" << endl;
     }
 }

@@ -27,20 +27,31 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::parse(string studentData)
 {
-    // Assign degree program
-    DegreeProgram dp = DegreeProgram::NETWORK;
     // Create an array, contains 8 items
-    string parsed[8];
+    string parsed[9];
 
     int right = 0;
     int left = 0;
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 9; i++)
     {
         // Find returns int with position of comma
         right = studentData.find(",", left);
         parsed[i] = studentData.substr(left, right - left);
         left = right + 1;
+    }
+    // default value as network
+    DegreeProgram dp = DegreeProgram::NETWORK;
+
+    // security
+    if (parsed[8] == degreeProgramTypes[0])
+    {
+        dp = DegreeProgram::SECURITY;
+        // software
+    }
+    else if (parsed[8] == degreeProgramTypes[2])
+    {
+        dp = DegreeProgram::SOFTWARE;
     }
 
     add((parsed[0]), parsed[1], parsed[2], parsed[3], stoi(parsed[4]), stoi(parsed[5]), stoi(parsed[6]), stoi(parsed[7]), dp);
@@ -57,8 +68,12 @@ void Roster::printAll()
 void Roster::printByDegreeProgram(DegreeProgram dp)
 {
     for (int i = 0; i <= Roster::lastStudentPosition; i++)
+    {
         if (Roster::classRosterArray[i]->getDegreeProgram() == dp)
+        {
             classRosterArray[i]->print();
+        }
+    }
 }
 
 // Print invalid emails

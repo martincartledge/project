@@ -94,7 +94,7 @@ void Roster::printAverageDaysInCourse(string studentID)
     {
         if (classRosterArray[i]->getStudentID() == studentID)
         {
-            cout << studentID << ':';
+            cout << "The average days in a course for " << studentID << " is :";
             cout << (classRosterArray[i]->getNumberOfDays()[0] + classRosterArray[i]->getNumberOfDays()[1] + classRosterArray[i]->getNumberOfDays()[2]) / 3 << endl;
         }
     }
@@ -122,18 +122,17 @@ void Roster::remove(string studentID)
     }
     if (success)
     {
-        cout << "Student " << studentID << " removed" << endl;
+        cout << "You successfully removed student " << studentID << "!" << endl;
         printAll();
     }
     else
-        cout << "Student " << studentID << " not found" << endl;
+        cout << "Oops! It looks like student " << studentID << " does not exist" << endl;
 }
 // Deconstructor
 Roster::~Roster()
 {
     for (int i = 0; i < numOfStudents; i++)
     {
-        cout << "Destructor called for " << classRosterArray[i]->getStudentID() << endl;
         delete classRosterArray[i];
         // Set to null after deletion
         classRosterArray[i] = nullptr;

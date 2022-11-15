@@ -6,10 +6,10 @@ int main()
     // 1. Print out to the screen, via your application, the course title, the programming language used, your WGU student ID, and your name.
     std::cout << "Course title: Scripting and Programming" << std::endl;
     std::cout << "Programming language: C++" << std::endl;
-    std::cout << "WGU ID: " << std::endl;
+    std::cout << "WGU ID: 001087165" << std::endl;
     std::cout << "Name: Martin Cartledge" << std::endl;
 
-    const std::string studentData[] = {"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Martin,Cartledge,martin@hey.com,32,10,15,20,25,SOFTWARE"};
+    const std::string studentData[] = {"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY", "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK", "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE", "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY", "A5,Martin,Cartledge,martin@hey.com,32,10,15,20,SOFTWARE"};
 
     // Arrays should be declared as a constant
     const int numOfStudents = 5;
@@ -37,7 +37,6 @@ int main()
     classRoster->printAll();
     classRoster->printInvalidEmails();
 
-    cout << "Average days in a course: " << endl;
     for (int i = 0; i < classRoster->numOfStudents; i++)
         classRoster->printAverageDaysInCourse(classRoster->classRosterArray[i]->getStudentID());
 
@@ -47,15 +46,5 @@ int main()
     classRoster->printAll();
     classRoster->remove("A3");
 
-    for (int i = 0; i < 3; i++)
-    {
-        // Casting i (integer) to DegreeProgram
-        // If it was not cast, DegreeProgram returns /displays an int value, NOT the string value
-        classRoster->printByDegreeProgram((DegreeProgram)i);
-    }
-
-    /*
-     *  5.Implement the destructor to release the memory that was allocated dynamically in Roster.
-     */
     return 0;
 }

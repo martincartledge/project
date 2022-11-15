@@ -51,11 +51,10 @@ void Student::print()
     int *daysList = getNumberOfDays();
 
     cout << this->studentID << '\t';
-    cout << this->firstName << '\t';
-    cout << this->lastName << '\t';
-    cout << this->emailAddress << '\t';
-    cout << this->age << '\t';
-    cout << degreeProgramTypes[(int)this->degreeProgram] << '\t';
-    cout << *daysList << " " << *(daysList + 1) << " " << *(daysList + 2) << endl;
+    cout << "First name: " << this->firstName << '\t';
+    cout << "Last name: " << this->lastName << '\t';
+    cout << "Age: " << this->age << '\t';
+    cout << "daysInCourse: " << *daysList << " " << *(daysList + 1) << " " << *(daysList + 2) << endl;
+    cout << "Degree Program: " << degreeProgramTypes[(int)this->degreeProgram] << '\t';
     cout << endl;
 }
